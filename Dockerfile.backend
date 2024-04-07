@@ -1,0 +1,18 @@
+# dev
+FROM node:21.7.2 as dev
+
+COPY ./be .
+
+RUN npm i
+
+CMD ["npm", "run", "start:dev"]
+
+# prod
+
+FROM node:21.7.2 as prod
+
+COPY ./be .
+
+RUN npm i && npm run build
+
+CMD ["npm", "run", "start:prod"]
